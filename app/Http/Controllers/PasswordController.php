@@ -14,7 +14,7 @@ class PasswordController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('throttle:3,10', [
+        $this->middleware('throttle:10,10', [
             'only' => ['showLinkRequestForm']
         ]);
     }
@@ -70,7 +70,7 @@ class PasswordController extends Controller
         $request->validate([
             'token' => 'required',
             'email' => 'required|email',
-            'password' => 'required|confirmed|min:8',
+            'password' => 'required|confirmed|min:6',
         ]);
         $email = $request->email;
         $token = $request->token;
